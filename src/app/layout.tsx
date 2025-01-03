@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { ConvexClientProvider } from "@/components/convexClinetProvider";
+
+import { ConvexReactClient } from "convex/react";
+import { Toaster } from "@/components/ui/toaster";
+import Header from "@/components/header";
+// import Header from "@/components/Header";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,13 +29,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ConvexClientProvider>
-          <ClerkProvider>{children}</ClerkProvider>
+          <ClerkProvider>
+            <Header />
+            {children}
+            <Toaster />
+          </ClerkProvider>
         </ConvexClientProvider>
       </body>
     </html>
