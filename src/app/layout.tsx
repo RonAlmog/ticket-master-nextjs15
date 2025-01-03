@@ -8,6 +8,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import { ConvexClientProvider } from "@/components/convexClinetProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -33,7 +34,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ClerkProvider>{children}</ClerkProvider>
+        <ConvexClientProvider>
+          <ClerkProvider>{children}</ClerkProvider>
+        </ConvexClientProvider>
       </body>
     </html>
   );
