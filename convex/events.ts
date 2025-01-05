@@ -352,6 +352,10 @@ export const getEventAvailability = query({
         (entries) => entries.filter((e) => (e.offerExpiresAt ?? 0) > now).length
       );
 
+    // any user who start the process, is inserted to the waiting list as 'offered',
+    // so her ticket cannot be sold (until expired)
+    // so the available tickets to sell/offer is total ticket number,
+    // minus actualy sold, minus active offers.
     const totalReserved = purchasedCount + activeOffers;
 
     return {
