@@ -1,18 +1,17 @@
 "use client";
 
 import EventCard from "@/components/event-card";
-
 import { useQuery } from "convex/react";
 import { CalendarDays, MapPin, Ticket, Users } from "lucide-react";
 import { useParams } from "next/navigation";
 import Spinner from "@/components/spinner";
-// import JoinQueue from "@/components/JoinQueue";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import { useStorageUrl } from "@/lib/utils";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { api } from "../../../../convex/_generated/api";
+import JoinQueue from "@/components/join-queue";
 
 export default function EventPage() {
   const { user } = useUser();
@@ -117,10 +116,10 @@ export default function EventPage() {
 
                   {user ? (
                     <div>
-                      {/* <JoinQueue
+                      <JoinQueue
                         eventId={params.id as Id<"events">}
                         userId={user.id}
-                      /> */}
+                      />
                     </div>
                   ) : (
                     <SignInButton>

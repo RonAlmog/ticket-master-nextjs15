@@ -122,6 +122,7 @@ export const processQueue = mutation({
     if (availableSpots <= 0) return;
 
     // Get next users in line
+    // TODO: potential bug: the query should be ordered by createdAt ascending. first ordered => first served.
     const waitingUsers = await ctx.db
       .query("waitingList")
       .withIndex("by_event_status", (q) =>

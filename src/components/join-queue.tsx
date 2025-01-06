@@ -35,6 +35,11 @@ export default function JoinQueue({
       const result = await joinWaitingList({ eventId, userId });
       if (result.success) {
         console.log("Successfully joined waiting list");
+        toast({
+          variant: "default",
+          title: "Success!",
+          description: result.message,
+        });
       }
     } catch (error) {
       if (
