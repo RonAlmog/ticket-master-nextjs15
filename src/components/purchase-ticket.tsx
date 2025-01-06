@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 
 import { useQuery } from "convex/react";
-// import ReleaseTicket from "./ReleaseTicket";
+import ReleaseTicket from "./release-ticket";
 import { Ticket } from "lucide-react";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
@@ -115,7 +115,7 @@ export default function PurchaseTicket({ eventId }: { eventId: Id<"events"> }) {
         </button>
 
         <div className="mt-4">
-          {/* <ReleaseTicket eventId={eventId} waitingListId={queuePosition._id} /> */}
+          <ReleaseTicket eventId={eventId} waitingListId={queuePosition._id} />
         </div>
       </div>
     </div>
