@@ -215,6 +215,8 @@ export const cleanupExpiredOffers = internalMutation({
   },
 });
 
+// mark a waitinglist entry as expired.
+// called by a cron job specific to that entry
 export const releaseTicket = mutation({
   args: {
     eventId: v.id("events"),
