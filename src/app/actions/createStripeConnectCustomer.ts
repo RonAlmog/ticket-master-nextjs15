@@ -4,7 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 
 import { ConvexHttpClient } from "convex/browser";
 import { stripe } from "@/lib/stripe";
-import { api } from "../../convex/_generated/api";
+import { api } from "../../../convex/_generated/api";
 
 if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error("STRIPE_SECRET_KEY is not set");

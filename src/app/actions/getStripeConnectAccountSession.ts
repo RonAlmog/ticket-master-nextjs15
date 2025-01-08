@@ -4,9 +4,9 @@ import { stripe } from "@/lib/stripe";
 import { getConvexClient } from "@/lib/convex";
 import baseUrl from "@/lib/baseUrl";
 import { auth } from "@clerk/nextjs/server";
-import { Id } from "../../convex/_generated/dataModel";
-import { api } from "../../convex/_generated/api";
-import { DURATIONS } from "../../convex/constants";
+import { Id } from "../../../convex/_generated/dataModel";
+import { api } from "../../../convex/_generated/api";
+import { DURATIONS } from "../../../convex/constants";
 
 // get the information needed to create the checkout page
 export type StripeCheckoutMetaData = {

@@ -2,7 +2,7 @@
 
 import { auth } from "@clerk/nextjs/server";
 import { ConvexHttpClient } from "convex/browser";
-import { api } from "../../convex/_generated/api";
+import { api } from "../../../convex/_generated/api";
 
 if (!process.env.NEXT_PUBLIC_CONVEX_URL) {
   throw new Error("NEXT_PUBLIC_CONVEX_URL is not set");
