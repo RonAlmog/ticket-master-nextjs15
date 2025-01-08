@@ -1,19 +1,16 @@
 "use client";
 import { createStripeConnectAccountLink } from "@/app/actions/createStripeConnectAccountLink";
 import { createStripeConnectCustomer } from "@/app/actions/createStripeConnectCustomer";
-
 import { useUser } from "@clerk/nextjs";
 import { useQuery } from "convex/react";
-
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { createStripeConnectLoginLink } from "@/app/actions/createStripeConnectLoginLink";
 import { getStripeConnectAccountStatus } from "@/app/actions/getStripeConnectAccountStatus";
-// import type { AccountStatus } from "@/app/actions/getStripeConnectAccountStatus";
+import type { AccountStatus } from "@/app/actions/getStripeConnectAccountStatus";
 import { CalendarDays, Cog, Plus } from "lucide-react";
 import Link from "next/link";
 import Spinner from "./spinner";
-import { AccountStatus } from "@/app/actions/getStripeConnectAccountStatus";
 import { api } from "../../convex/_generated/api";
 
 export default function SellerDashboard() {
