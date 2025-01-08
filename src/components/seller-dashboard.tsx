@@ -1,7 +1,7 @@
 "use client";
 import { createStripeConnectAccountLink } from "@/app/actions/createStripeConnectAccountLink";
 import { createStripeConnectCustomer } from "@/app/actions/createStripeConnectCustomer";
-import { api } from "@/convex/_generated/api";
+
 import { useUser } from "@clerk/nextjs";
 import { useQuery } from "convex/react";
 
@@ -9,10 +9,12 @@ import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { createStripeConnectLoginLink } from "@/app/actions/createStripeConnectLoginLink";
 import { getStripeConnectAccountStatus } from "@/app/actions/getStripeConnectAccountStatus";
-import type { AccountStatus } from "@/app/actions/getStripeConnectAccountStatus";
+// import type { AccountStatus } from "@/app/actions/getStripeConnectAccountStatus";
 import { CalendarDays, Cog, Plus } from "lucide-react";
 import Link from "next/link";
 import Spinner from "./spinner";
+import { AccountStatus } from "@/app/actions/getStripeConnectAccountStatus";
+import { api } from "../../convex/_generated/api";
 
 export default function SellerDashboard() {
   const [accountCreatePending, setAccountCreatePending] = useState(false);
@@ -31,11 +33,22 @@ export default function SellerDashboard() {
   const isReadyToAcceptPayments =
     accountStatus?.isActive && accountStatus?.payoutsEnabled;
 
+  const fetchAccountStatus = React.useCallback(async () => {
+    if (stripeConnectId) {
+      try {
+        const status = await getStripeConnectAccountStatus(stripeConnectId);
+        setAccountStatus(status);
+      } catch (error) {
+        console.error("Error fetching account status:", error);
+      }
+    }
+  }, [stripeConnectId]);
+
   useEffect(() => {
     if (stripeConnectId) {
       fetchAccountStatus();
     }
-  }, [stripeConnectId]);
+  }, [stripeConnectId, fetchAccountStatus]);
 
   if (stripeConnectId === undefined) {
     return <Spinner />;
@@ -50,17 +63,6 @@ export default function SellerDashboard() {
     } catch (error) {
       console.error("Error accessing Stripe Connect portal:", error);
       setError(true);
-    }
-  };
-
-  const fetchAccountStatus = async () => {
-    if (stripeConnectId) {
-      try {
-        const status = await getStripeConnectAccountStatus(stripeConnectId);
-        setAccountStatus(status);
-      } catch (error) {
-        console.error("Error fetching account status:", error);
-      }
     }
   };
 
