@@ -74,8 +74,8 @@ export default function SellerDashboard() {
           </p>
         </div>
 
-        {/* Main Content */}
-        {isReadyToAcceptPayments && (
+        {/* Main Content TODO: remove */}
+        {(isReadyToAcceptPayments || true) && (
           <>
             <div className="bg-white p-8 rounded-lg">
               <h2 className="text-2xl font-semibold text-gray-900 mb-6">
