@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
         pathname: "/",
         search: "",
       },
+      {
+        protocol: "https",
+        hostname: "strong-clownfish-676.convex.cloud",
+      },
     ],
   },
 };
