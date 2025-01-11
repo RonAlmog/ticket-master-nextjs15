@@ -1,16 +1,14 @@
 "use client";
 
-// import { createStripeCheckoutSession } from "@/app/actions/createStripeCheckoutSession";
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
-
 import { useQuery } from "convex/react";
 import ReleaseTicket from "./release-ticket";
 import { Ticket } from "lucide-react";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
+import { createStripeCheckoutSession } from "@/app/actions/getStripeConnectAccountSession";
 
 export default function PurchaseTicket({ eventId }: { eventId: Id<"events"> }) {
   const router = useRouter();
@@ -60,13 +58,13 @@ export default function PurchaseTicket({ eventId }: { eventId: Id<"events"> }) {
 
     try {
       setIsLoading(true);
-      // const { sessionUrl } = await createStripeCheckoutSession({
-      //   eventId,
-      // });
+      const { sessionUrl } = await createStripeCheckoutSession({
+        eventId,
+      });
 
-      // if (sessionUrl) {
-      //   router.push(sessionUrl);
-      // }
+      if (sessionUrl) {
+        router.push(sessionUrl);
+      }
     } catch (error) {
       console.error("Error creating checkout session:", error);
     } finally {
