@@ -8,7 +8,7 @@ import ReleaseTicket from "./release-ticket";
 import { Ticket } from "lucide-react";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
-import { createStripeCheckoutSession } from "@/app/actions/getStripeConnectAccountSession";
+import { createStripeCheckoutSession } from "@/app/actions/createStripeCheckoutSession";
 
 export default function PurchaseTicket({ eventId }: { eventId: Id<"events"> }) {
   const router = useRouter();
