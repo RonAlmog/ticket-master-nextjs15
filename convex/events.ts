@@ -369,6 +369,7 @@ export const getEventAvailability = query({
   },
 });
 
+// TODO: improve this with elasticsearch
 export const search = query({
   args: { searchTerm: v.string() },
   handler: async (ctx, { searchTerm }) => {
@@ -467,6 +468,8 @@ export const updateEvent = mutation({
   },
 });
 
+// this will cancel the event.
+// prior to this, user should refund all tickets sold to it!
 export const cancelEvent = mutation({
   args: { eventId: v.id("events") },
   handler: async (ctx, { eventId }) => {
