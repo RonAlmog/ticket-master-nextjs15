@@ -1,15 +1,15 @@
 "use client";
 
 import { useQuery } from "convex/react";
-// import { useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import EventCard from "@/components/event-card";
 import { Search } from "lucide-react";
 import Spinner from "@/components/spinner";
 import { api } from "../../../convex/_generated/api";
 
 export default function SearchPage() {
-  // const searchParams = useSearchParams();
-  const query = ""; // searchParams.get("q");
+  const searchParams = useSearchParams();
+  const query = searchParams.get("q");
   const searchResults = useQuery(api.events.search, { searchTerm: query! });
 
   if (!searchResults) {
