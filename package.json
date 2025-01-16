@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "importevents": "npx convex import --table events convex/sampleData"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.9.10",
